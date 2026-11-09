@@ -1,0 +1,67 @@
+
+{% extends 'learning_logs/base.html' %}
+
+{% block title %}
+Início | MeuDjango
+{% endblock %}
+
+{% block content %}
+
+<section style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 75vh;
+    padding: 30px;
+">
+
+    <div style="max-width: 700px;">
+
+        <h2 style="font-size: 48px; margin-bottom: 20px;">
+            Bem-vindo ao seu
+            <span style="color: #38bdf8;">
+                projeto Django!
+            </span>
+        </h2>
+
+        <p style="
+            color: #94a3b8;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        ">
+            Este é o início de uma nova aplicação.
+            Explore, desenvolva e transforme suas ideias
+            em algo incrível utilizando Python e Django.
+        </p>
+
+        <a href="#recursos" class="btn">
+            Começar agora
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="cards" id="recursos">
+
+    <div class="card">
+        <h3>Python</h3>
+        <p>Uma linguagem poderosa, simples e versátil.</p>
+    </div>
+
+    <div class="card">
+        <h3>Django</h3>
+        <p>Um framework completo para aplicações web.</p>
+    </div>
+
+    <div class="card">
+        <h3>Desenvolvimento</h3>
+        <p>Transforme suas ideias em projetos reais.</p>
+    </div>
+
+</section>
+
+{% endblock %}

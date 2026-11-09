@@ -1,0 +1,40 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+
+    <section style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    min-height: 60vh;
+    padding: 30px;
+">
+
+    <div style="max-width: 700px;">
+        <p style="
+            color: #94a3b8;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        ">
+        <h3>Tópico: {{ topics }}</h3>
+        <ul>
+            {% for entry in entries %}
+                <li>
+                    <p>{{ entry.date_added }}</p>
+                    <p>{{ entry.text | linebreaks }}</p>
+                </li>
+            {% empty %}
+                <li>Não há registros</li>
+            
+            {% endfor %}
+        </ul>
+
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock content %}

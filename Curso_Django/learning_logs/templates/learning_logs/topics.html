@@ -1,0 +1,51 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block title %}
+Início | MeuDjango
+{% endblock %}
+
+{% block content %}
+
+<section style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    min-height: 60vh;
+    padding: 30px;
+">
+
+    <div style="max-width: 700px;">
+
+        <h2 style="font-size: 48px; margin-bottom: 20px;">
+            Bem-vindo ao
+            <span style="color: #38bdf8;">
+                Topics
+            </span>
+        </h2>
+
+        <p style="
+            color: #94a3b8;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        ">
+            <ul>
+                {% for topic in topics %}
+                    <li>
+                        <a href="{% url 'topic' topic.id %}">
+                        {{ topic|truncatechars:40 }}
+                        </a>
+                    </li>
+                {% empty %}
+                    <li>Não há tópicos selecionádos</li>
+                {% endfor %}
+            </ul>
+
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}
