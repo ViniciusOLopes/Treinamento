@@ -1,51 +1,69 @@
-{% extends 'learning_logs/base.html' %}
+{% extends "learning_logs/base.html" %}
 
 {% block title %}
-Início | MeuDjango
-{% endblock %}
+Tópicos | MeuDjango
+{% endblock title %}
 
 {% block content %}
-
 <section style="
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: left;
     min-height: 60vh;
     padding: 30px;
 ">
+    <div style="width: 100%; max-width: 700px;">
 
-    <div style="max-width: 700px;">
-
-        <h2 style="font-size: 48px; margin-bottom: 20px;">
-            Bem-vindo ao
-            <span style="color: #38bdf8;">
-                Topics
-            </span>
+        <h2 style="font-size: 42px; margin-bottom: 10px;">
+            Bem-vindo ao <span style="color: #38bdf8;">Topics</span>
         </h2>
-
-        <p style="
-            color: #94a3b8;
-            font-size: 18px;
-            line-height: 1.7;
-            margin-bottom: 30px;
-        ">
-            <ul>
-                {% for topic in topics %}
-                    <li>
-                        <a href="{% url 'topic' topic.id %}">
-                        {{ topic|truncatechars:40 }}
-                        </a>
-                    </li>
-                {% empty %}
-                    <li>Não há tópicos selecionádos</li>
-                {% endfor %}
-            </ul>
-
+        
+        <p style="color: #94a3b8; font-size: 18px; margin-bottom: 30px;">
+            Selecione um tópico abaixo para visualizar suas anotações.
         </p>
 
+        <ul style="list-style: none; padding: 0; margin: 0 0 35px 0;">
+            {% for topic in topics %}
+                <li style="margin-bottom: 12px;">
+                    <a href="{% url 'topic' topic.id %}" style="
+                        display: block;
+                        padding: 16px 20px;
+                        background-color: rgba(255, 255, 255, 0.05);
+                        border: 1px solid rgba(148, 163, 184, 0.2);
+                        border-radius: 8px;
+                        color: inherit;
+                        text-decoration: none;
+                        font-size: 18px;
+                    ">
+                        {{ topic|truncatechars:40 }}
+                    </a>
+                </li>
+            {% empty %}
+                <li style="
+                    padding: 20px;
+                    background-color: rgba(255, 255, 255, 0.03);
+                    border-radius: 8px;
+                    color: #94a3b8;
+                    text-align: center;
+                ">
+                    Não há tópicos selecionados no momento.
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'add_topic' %}" style="
+            display: inline-block;
+            background-color: #38bdf8;
+            color: #0f172a;
+            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+        ">
+            + Adicionar novo tópico
+        </a>
+
     </div>
-
 </section>
-
-{% endblock %}
+{% endblock content %}

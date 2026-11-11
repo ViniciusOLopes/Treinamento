@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from .models import Topic
+from .forms import TopicForm, EntryForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 
 # Create your views here.
 
@@ -31,6 +35,45 @@ def topic(request, topic_id):
     topic = Topic.objects.get(id = topic_id)
     #Busca todas as entreis relacionadas ao tópico em questão
     entries = topic.entry_set.order_by('-date_added')#O - faz com que seja na ordem inversa
-    context = {'topics':topic, 'entries':entries}
+    context = {'topic':topic, 'entries':entries}
 
     return render(request, 'learning_logs/topic.html', context)
+
+def add_topic(request):
+    """
+    Adiciona um novo tópico
+    """
+    if request.method != 'POST':
+        # Caso nenhum dado seja submetído irá criar um formulário em branco (Irá renderizar o formulário)
+        form = TopicForm()
+    else:
+        # Caso dados sejam submetídos, processará os dados
+        form = TopicForm(request.POST) #O form recebe o formulário com os valores
+        if form.is_valid():#Verifica se todos os valores estão preenchidos corretamentes
+            form.save()
+            return HttpResponseRedirect(reverse('topics')) #Vai redirecionar de volta para a pagina topics
+    context = {'form': form}
+    return render(request, 'learning_logs/add_topic.html', context)
+
+def add_entry(request, topic_id):
+    """
+    Adiciona um novo entry
+    """
+    topic = Topic.objects.get(id=topic_id)
+    
+    if request.method != 'POST':
+        # Caso nenhum dado seja submetído irá criar um formulário em branco (Irá renderizar o formulário)
+        form = EntryForm()
+
+    else:
+        # Caso dados sejam submetídos, processará os dados
+        form = EntryForm(data=request.POST) #O form recebe o formulário com os valores
+        if form.is_valid():#Verifica se todos os valores estão preenchidos corretamentes
+            new_entry = form.save(commit=False)
+            new_entry.topic = topic
+            new_entry.save()
+            return HttpResponseRedirect(reverse('topic', args=[topic_id])) #Vai redirecionar de volta para a pagina topics
+
+    context = {'topic': topic, 'form':form}
+    return render(request, 'learning_logs/add_entry.html', context)
+        

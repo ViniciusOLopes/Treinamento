@@ -1,40 +1,98 @@
-{% extends 'learning_logs/base.html' %}
+{% extends "learning_logs/base.html" %}
+
+{% block title %}
+{{ topic }} | MeuDjango
+{% endblock title %}
 
 {% block content %}
-
-    <section style="
+<section style="
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: left;
     min-height: 60vh;
     padding: 30px;
 ">
+    <div style="width: 100%; max-width: 700px;">
 
-    <div style="max-width: 700px;">
-        <p style="
-            color: #94a3b8;
-            font-size: 18px;
-            line-height: 1.7;
+        <div style="margin-bottom: 15px;">
+            <a href="{% url 'topics' %}" style="
+                color: #94a3b8;
+                text-decoration: none;
+                font-size: 15px;
+            ">
+                ← Voltar para Tópicos
+            </a>
+        </div>
+
+        <h2 style="font-size: 36px; margin-bottom: 10px;">
+            Tópico: <span style="color: #38bdf8;">{{ topic }}</span>
+        </h2>
+
+        <div style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
         ">
-        <h3>Tópico: {{ topics }}</h3>
-        <ul>
+            <p style="color: #94a3b8; font-size: 18px; margin: 0;">
+                Anotações:
+            </p>
+
+            <a href="{% url 'add_entry' topic.id %}" style="
+                display: inline-block;
+                background-color: #38bdf8;
+                color: #0f172a;
+                font-weight: bold;
+                padding: 10px 20px;
+                border-radius: 8px;
+                text-decoration: none;
+                font-size: 15px;
+            ">
+                + Adicionar anotação
+            </a>
+        </div>
+
+        <ul style="list-style: none; padding: 0; margin: 0;">
             {% for entry in entries %}
-                <li>
-                    <p>{{ entry.date_added }}</p>
-                    <p>{{ entry.text | linebreaks }}</p>
+                <li style="
+                    background-color: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(148, 163, 184, 0.2);
+                    border-left: 4px solid #38bdf8;
+                    border-radius: 8px;
+                    padding: 20px;
+                    margin-bottom: 16px;
+                ">
+                    <div style="
+                        color: #38bdf8;
+                        font-size: 13px;
+                        font-weight: bold;
+                        margin-bottom: 10px;
+                    ">
+                        {{ entry.date_added|date:"d/m/Y \à\s H:i" }}
+                    </div>
+
+                    <div style="
+                        font-size: 16px;
+                        line-height: 1.6;
+                    ">
+                        {{ entry.text|linebreaks }}
+                    </div>
                 </li>
             {% empty %}
-                <li>Não há registros</li>
-            
+                <li style="
+                    padding: 25px;
+                    background-color: rgba(255, 255, 255, 0.03);
+                    border-radius: 8px;
+                    color: #94a3b8;
+                    text-align: center;
+                ">
+                    Não há registros para este tópico ainda.
+                </li>
             {% endfor %}
         </ul>
 
-        </p>
-
     </div>
-
 </section>
-
 {% endblock content %}

@@ -11,7 +11,7 @@ class Topic(models.Model):
 
     def __str__(self):
         """
-        DEvolve uma representação em string do modelo.
+        Devolve uma representação em string do modelo.
         """
         return self.text
 
@@ -38,5 +38,3 @@ class Entry(models.Model):
             if len(self.topic.text) > 10
             else f"({self.topic.text}) {self.text[:50]}..."
 )
-
-
