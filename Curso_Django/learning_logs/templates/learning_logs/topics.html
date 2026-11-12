@@ -22,22 +22,49 @@ Tópicos | MeuDjango
             Selecione um tópico abaixo para visualizar suas anotações.
         </p>
 
-        <ul style="list-style: none; padding: 0; margin: 0 0 35px 0;">
+        <ul style="list-style: none; padding: 0; margin: 0;">
             {% for topic in topics %}
-                <li style="margin-bottom: 12px;">
-                    <a href="{% url 'topic' topic.id %}" style="
-                        display: block;
-                        padding: 16px 20px;
-                        background-color: rgba(255, 255, 255, 0.05);
-                        border: 1px solid rgba(148, 163, 184, 0.2);
-                        border-radius: 8px;
-                        color: inherit;
-                        text-decoration: none;
-                        font-size: 18px;
+                <li style="
+                    background-color: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(148, 163, 184, 0.2);
+                    border-left: 4px solid #38bdf8;
+                    border-radius: 8px;
+                    padding: 20px;
+                    margin-bottom: 16px;
+                ">
+                    <div style="
+                        font-size: 16px;
+                        line-height: 1.6;
+                        margin-bottom: 16px;
                     ">
-                        {{ topic|truncatechars:40 }}
-                    </a>
-                </li>
+                        {{ topic.text|linebreaks }}
+                    </div>
+
+                    <div style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    ">
+                        <!-- Link para o tópico no canto inferior esquerdo -->
+                        <a href="{% url 'topic' topic.id %}" style="
+                            color: #38bdf8;
+                            text-decoration: none;
+                            font-size: 14px;
+                            font-weight: bold;
+                        ">
+                            Ver Tópico
+                        </a>
+
+                        <!-- Link/Botão para editar no canto inferior direito -->
+                        <a href="{% url 'edit_topic' topic.id %}" style="
+                            color: #38bdf8;
+                            text-decoration: none;
+                            font-size: 14px;
+                            font-weight: bold;
+                        ">
+                            Editar Tópico
+                        </a>
+                    </div>
             {% empty %}
                 <li style="
                     padding: 20px;

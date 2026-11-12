@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Topic
+from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -55,6 +55,24 @@ def add_topic(request):
     context = {'form': form}
     return render(request, 'learning_logs/add_topic.html', context)
 
+def edit_topic(request, topic_id):
+    """
+    Editar um Tópico que já existe
+    """
+    topic = Topic.objects.get(id = topic_id)
+    if request.method != 'POST':
+        form = TopicForm(instance=topic)
+    else:
+        #Pegando dados pelo POST e submetendo eles
+        form = TopicForm(instance=topic, data=request.POST)
+        #Validando dados
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('topics'))
+    context = {'topic': topic, 'form':form}
+    return render(request, 'learning_logs/edit_topic.html', context)
+
+
 def add_entry(request, topic_id):
     """
     Adiciona um novo entry
@@ -76,4 +94,25 @@ def add_entry(request, topic_id):
 
     context = {'topic': topic, 'form':form}
     return render(request, 'learning_logs/add_entry.html', context)
-        
+
+
+def edit_entry(request, entry_id):
+    """
+    Edita uma entrada existente
+    """
+    entry = Entry.objects.get(id = entry_id)
+    topic = entry.topic
+
+    if request.method != 'POST':
+        #Preenche previamente o form que sera aberto
+        form = EntryForm(instance=entry)
+
+    else:
+        #Submetendo dados do POST para o forms
+        form = EntryForm(instance=entry, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('topic', args=[topic.id]))
+    context = {'entry':entry, 'topic':topic, 'form':form}
+
+    return render(request,'learning_logs/edit_entry.html',context)

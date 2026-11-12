@@ -37,4 +37,6 @@ class Entry(models.Model):
             f"({self.topic.text[:10]}...) {self.text[:50]}..."
             if len(self.topic.text) > 10
             else f"({self.topic.text}) {self.text[:50]}..."
+
 )
+           

@@ -79,6 +79,9 @@
                     ">
                         {{ entry.text|linebreaks }}
                     </div>
+                    <p>
+                        <a href="{% url 'edit_entry' entry.id %}">Editar entrada</a>
+                    </p>
                 </li>
             {% empty %}
                 <li style="
