@@ -4,9 +4,7 @@ from .forms import TopicForm, EntryForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-
 # Create your views here.
-
 def index(request):
     """
     Página principal do learning_logs
@@ -72,7 +70,6 @@ def edit_topic(request, topic_id):
     context = {'topic': topic, 'form':form}
     return render(request, 'learning_logs/edit_topic.html', context)
 
-
 def add_entry(request, topic_id):
     """
     Adiciona um novo entry
@@ -94,7 +91,6 @@ def add_entry(request, topic_id):
 
     context = {'topic': topic, 'form':form}
     return render(request, 'learning_logs/add_entry.html', context)
-
 
 def edit_entry(request, entry_id):
     """
