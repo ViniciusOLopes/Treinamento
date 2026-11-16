@@ -35,10 +35,15 @@ Início | MeuDjango
             Crie Tópicos e anotações atravez desse app.
             Use os conhecimentos de Django e Pyhton para isso.
         </p>
-
-        <a href="/topics" class="btn">
+        {% if user.is_authenticated %}
+            <a href="/topics" class="btn">
+                Começar agora
+            </a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn">
             Começar agora
-        </a>
+            </a>
+        {% endif %}
 
     </div>
 

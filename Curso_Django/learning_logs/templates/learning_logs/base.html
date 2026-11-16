@@ -165,28 +165,36 @@
             <a href="/">MeuDjango.</a> 
             {% if user.is_authenticated %}
                 Olá, {{ user.username }}
+                <a href="{% url 'logout' %}">Sair</a>
+                
             {% else %}
                 <a href="{% url 'login' %}">Entrar</a>
             {%endif%}
         </h1>
 
-        <nav>
-            <a href="/">Início</a>
-            <a href="/sobre">Sobre</a>
-            <a href="/admin">Admin</a>
-            <a href="/topics">Topics</a>
-        </nav>
+        {% if user.is_authenticated %}
+            <nav>
+                <a href="/">Início</a>
+                <a href="/sobre">Sobre</a>
+                <a href="/topics">Topics</a>
+            
+
+            {% if user.username == 'admin' %}
+                <a href="/admin">Admin</a>
+            {% endif %}
+            
+        {% else %}
+        {% endif %}
+            </nav>
     </header>
 
     <!-- REGIÃO CENTRAL -->
-
     <main>
         {% block content %}
         {% endblock %}
     </main>
 
     <!-- RODAPÉ -->
-
     {% block rodape %}
     <footer>
         <p>&copy; 2026 MeuDjango. Todos os direitos reservados.</p>
