@@ -1,0 +1,67 @@
+
+{% extends "learning_logs/base.html" %}
+
+{% block title %}Criar Conta | MeuDjango{% endblock %}
+
+{% block content %}
+
+<div class="register-container">
+
+    <div class="register-card">
+
+        <div class="register-header">
+            <h2>Crie sua conta</h2>
+            <p>Preencha os campos abaixo para começar.</p>
+        </div>
+
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="form-errors">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="form-group">
+
+                    <label for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+
+                    {{ field }}
+
+                    {% if field.help_text %}
+                        <div class="help-text">
+                            {{ field.help_text|safe }}
+                        </div>
+                    {% endif %}
+
+                    {% for error in field.errors %}
+                        <div class="error-message">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+            {% endfor %}
+
+            <button type="submit" name="submit" class="register-btn">
+                Criar minha conta
+            </button>
+
+            <input type="hidden" name="next"
+                   value="{% url 'index' %}">
+        </form>
+
+        <div class="register-footer">
+            <span>Já possui uma conta?</span>
+            <a href="{% url 'login' %}">Faça login</a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

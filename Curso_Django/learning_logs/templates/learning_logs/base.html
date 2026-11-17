@@ -154,6 +154,147 @@
 
         /* ESTILOS ESPECÍFICOS DAS PÁGINAS */
 
+        /* ==PÁGINA DE REGISTRO== */
+
+        .register-container {
+            width: 100%;
+            min-height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .register-card {
+            width: 100%;
+            max-width: 450px;
+            padding: 35px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .register-header h2 {
+            color: #38bdf8;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .register-header p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Campos */
+
+        .register-card .form-group {
+            margin-bottom: 22px;
+        }
+
+        .register-card .form-group label {
+            display: block;
+            color: #e2e8f0;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .register-card .form-group input {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            color: #f8fafc;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .register-card .form-group input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+        }
+
+        /* Informações de senha */
+
+        .register-card .help-text {
+            color: #94a3b8;
+            font-size: 12px;
+            line-height: 1.6;
+            margin-top: 8px;
+        }
+
+        .register-card .help-text ul {
+            padding-left: 18px;
+        }
+
+        .register-card .help-text li {
+            margin-bottom: 3px;
+        }
+
+        /* Erros */
+
+        .register-card .error-message,
+        .register-card .form-errors {
+            color: #f87171;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* Botão */
+
+        .register-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin-top: 25px;
+            background: #0284c7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .register-btn:hover {
+            background: #0369a1;
+            transform: translateY(-2px);
+        }
+
+        /* Rodapé */
+
+        .register-footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .register-footer a {
+            margin-left: 5px;
+            font-weight: bold;
+        }
+
+        /* Responsividade */
+
+        @media (max-width: 480px) {
+            .register-card {
+                padding: 25px 20px;
+            }
+        }
+
+
     </style>
 </head>
 
@@ -184,6 +325,7 @@
             {% endif %}
             
         {% else %}
+                <a href="{% url 'register' %}">Registrar-se</a>
         {% endif %}
             </nav>
     </header>

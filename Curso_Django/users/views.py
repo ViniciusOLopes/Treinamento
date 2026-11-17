@@ -1,10 +1,37 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render
 
 def logout_view(request):
     """
     Faz o logout do usuário.
     """
     logout(request)
-    return HttpResponseRedirect(reverse('index')) 
+    return HttpResponseRedirect(reverse('index'))
+
+def register_view(request):
+    """
+    Cadastro para novos usuários.
+    """
+
+    if request.method != 'POST':
+        #UserCreationForm gera automaticamento o formulario de registro.
+        form = UserCreationForm()
+
+    else:
+        #Processa o formulario preenchido
+        form = UserCreationForm(data=request.POST)
+
+        if form.is_valid():
+            new_user = form.save()
+            #Verifica a autenticação
+            authenticated_user = authenticate(
+                username=new_user.username,
+                password=request.POST['password1'])
+            #Faz login
+            login(request, authenticated_user)
+            return HttpResponseRedirect(reverse('index'))
+    context = {'form':form}
+    return render(request, 'users/register.html', context)
