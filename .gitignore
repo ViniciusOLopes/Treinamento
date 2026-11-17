@@ -1,0 +1,11 @@
+# Banco de dados local
+*.sqlite3
+*.sqlite
+
+# Ambiente virtual
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
