@@ -294,6 +294,150 @@
             }
         }
 
+        /* == PÁGINA DE LOGIN == */
+        .login-container {
+            width: 100%;
+            min-height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            padding: 35px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* CABEÇALHO */
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h2 {
+            color: #38bdf8;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* CAMPOS */
+
+        .login-form-group {
+            margin-bottom: 22px;
+        }
+
+        .login-form-group label {
+            display: block;
+            color: #e2e8f0;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .login-form-group input {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            color: #f8fafc;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .login-form-group input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+        }
+
+        /* MENSAGEM DE ERRO */
+
+        .login-error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+            color: #fca5a5;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 22px;
+            line-height: 1.5;
+        }
+
+        .login-form-group .error-message {
+            display: block;
+            color: #f87171;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* BOTÃO */
+
+        .login-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin-top: 25px;
+            background: #0284c7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #0369a1;
+            transform: translateY(-2px);
+        }
+
+        /* RODAPÉ */
+
+        .login-footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+        }
+
+        .login-footer p {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .login-footer a {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 25px 20px;
+            }
+
+            .login-header h2 {
+                font-size: 24px;
+            }
+        }
+
 
     </style>
 </head>
