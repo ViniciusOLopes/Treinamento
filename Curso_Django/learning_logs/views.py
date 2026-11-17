@@ -3,6 +3,7 @@ from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -17,6 +18,7 @@ def sobre(request):
     """
     return render(request, 'learning_logs/sobre.html')
 
+@login_required
 def topics(request):
     """
     Mostra todos os assuntos.
@@ -25,6 +27,7 @@ def topics(request):
     context = {'topics': topic }
     return render(request, 'learning_logs/topics.html', context)
 
+@login_required
 def topic(request, topic_id):
     """
     Mostra todas as entradas de cada topico
@@ -37,6 +40,7 @@ def topic(request, topic_id):
 
     return render(request, 'learning_logs/topic.html', context)
 
+@login_required
 def add_topic(request):
     """
     Adiciona um novo tópico
@@ -53,6 +57,7 @@ def add_topic(request):
     context = {'form': form}
     return render(request, 'learning_logs/add_topic.html', context)
 
+@login_required
 def edit_topic(request, topic_id):
     """
     Editar um Tópico que já existe
@@ -70,6 +75,7 @@ def edit_topic(request, topic_id):
     context = {'topic': topic, 'form':form}
     return render(request, 'learning_logs/edit_topic.html', context)
 
+@login_required
 def add_entry(request, topic_id):
     """
     Adiciona um novo entry
@@ -92,6 +98,7 @@ def add_entry(request, topic_id):
     context = {'topic': topic, 'form':form}
     return render(request, 'learning_logs/add_entry.html', context)
 
+@login_required
 def edit_entry(request, entry_id):
     """
     Edita uma entrada existente

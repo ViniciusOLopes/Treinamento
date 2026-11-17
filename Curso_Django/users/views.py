@@ -15,7 +15,6 @@ def register_view(request):
     """
     Cadastro para novos usuários.
     """
-
     if request.method != 'POST':
         #UserCreationForm gera automaticamento o formulario de registro.
         form = UserCreationForm()
